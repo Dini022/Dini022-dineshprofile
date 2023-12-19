@@ -3,6 +3,8 @@ from urllib.parse import urlparse
 import os
 import json
 import datetime as dt
+import uvicorn
+import os
 
 # import fastapi service modules
 from fastapi import FastAPI, Request
@@ -19,3 +21,16 @@ from router import router
 fastapi_app = FastAPI()
 fastapi_app.mount("/static", StaticFiles(directory="static"), name="static")
 fastapi_app.include_router(router)
+
+
+if __name__ == "__main__":
+    reload = False
+    uvicorn_config = {
+        "host": 'localhost',
+        "port": 9810,
+        "reload": reload,
+        "workers": 1,
+        "log_level": "info",
+    }
+    print(uvicorn_config)
+    uvicorn.run("main:fastapi_app", **uvicorn_config)
