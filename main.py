@@ -26,8 +26,8 @@ fastapi_app.include_router(router)
 if __name__ == "__main__":
     reload = False
     uvicorn_config = {
-        "host": 'localhost',
-        "port": 9810,
+        "host": '0.0.0.0',
+        "port": 8000,
         "reload": reload,
         "workers": 1,
         "log_level": "info",
